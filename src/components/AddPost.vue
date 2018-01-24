@@ -57,6 +57,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
@@ -84,19 +86,18 @@ export default {
     }
   },
   methods: {
-    submitPost () {
-      console.log(axios)
-      this.axios.post(`http://jsonplaceholder.typicode.com/posts`, {
-        userId: 1,
-        title: blog.title,
-        body: blog.content
-      })
-      .then(response => {
-        console.log(response)
-      })
-      .catch(e => {
-        this.errors.push(e)
-      })
+    async submitPost () {
+      try {
+        const data = await axios.post(`http://jsonplaceholder.typicode.com/posts`, {
+          userId: 1,
+          title: this.blog.title,
+          body: this.blog.content
+        })
+
+        console.log(data)
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
 }
