@@ -12,7 +12,6 @@
       </v-toolbar>
       <v-form 
         class="pr-3 pl-3"
-        v-model="valid" 
         ref="form" 
         lazy-validation>
         <v-text-field
@@ -29,12 +28,16 @@
           required
           multi-line
         ></v-text-field>
+        <v-checkbox label="Web Development" v-model="blog.categories" value="Web Development"></v-checkbox>
+        <v-checkbox label="Entreprenuership" v-model="blog.categories" value="Entreprenuership"></v-checkbox>
+        <v-checkbox label="Productivity" v-model="blog.categories" value="Productivity"></v-checkbox>
       </v-form>
-      <v-devider></v-devider>
+      <v-divider></v-divider>
       <div class="pr-3 pl-3 pb-3 pt-3">
         <h5>Preview:</h5>
         <h2>{{ blog.title }}</h2>
         <p>{{ blog.content }}</p>
+        <v-chip v-for="category in blog.categories"> {{ category }} </v-chip>
       </div>
     </v-flex>
   </v-layout>
@@ -56,7 +59,8 @@ export default {
           (v) => !!v || 'Content is required',
           (v) => v && v.length >= 3 || 'Content must be greater than 3 characters',
           (v) => v && v.length <= 280 || 'Content must be less than 280 characters'
-        ]
+        ],
+        categories: []
       }
     }
   }
