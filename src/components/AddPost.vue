@@ -38,6 +38,11 @@
           single-line
           bottom
         ></v-select>
+        <v-btn
+          @click="submitPost"
+        >
+          Post now
+        </v-btn>
       </v-form>
       <v-divider></v-divider>
       <div class="pr-3 pl-3 pb-3 pt-3">
@@ -45,7 +50,7 @@
         <h2>{{ blog.title }}</h2>
         <p> {{ blog.level.text }}</p>
         <p>{{ blog.content }}</p>
-        <v-chip v-for="category in blog.categories"> {{ category }} </v-chip>
+        <v-chip v-for="category in blog.categories" :key="category"> {{ category }} </v-chip>
       </div>
     </v-flex>
   </v-layout>
@@ -76,6 +81,23 @@ export default {
         ],
         level: ''
       }
+    }
+  },
+  methods: {
+    submitPost () {
+
+      console.log(axios)
+      this.axios.post(`http://jsonplaceholder.typicode.com/posts`, {
+        userId: 1,
+        title: blog.title,
+        body: blog.content
+      })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
     }
   }
 }
