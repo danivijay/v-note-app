@@ -11,6 +11,7 @@
         <v-toolbar-title>Add a new post</v-toolbar-title>
       </v-toolbar>
       <v-form 
+        v-if="!blog.posted"
         class="pr-3 pl-3"
         ref="form" 
         lazy-validation>
@@ -44,7 +45,22 @@
           Post now
         </v-btn>
       </v-form>
+
+      <v-alert 
+        v-if="blog.posted" 
+        class="ml-2 mr-2 mt-2 mb-2"
+        color="success" 
+        icon="check_circle" 
+        value="true">
+      Successfully posted
+      </v-alert>
+
+      <v-alert v-if="blog.failed" class="ml-2 mr-2 mt-2 mb-2" color="error" icon="warning" value="true">
+      Oops! Please try again
+      </v-alert>
+
       <v-divider></v-divider>
+
       <div class="pr-3 pl-3 pb-3 pt-3">
         <h5>Preview:</h5>
         <h2>{{ blog.title }}</h2>
@@ -81,21 +97,24 @@ export default {
           { text: 'UtmostDev' },
           { text: 'The Web Club' }
         ],
-        level: ''
+        level: '',
+        posted: false,
+        failed: false
       }
     }
   },
   methods: {
     async submitPost () {
       try {
-        const data = await axios.post(`http://jsonplaceholder.typicode.com/posts`, {
+        const data = (await axios.post(`http://jsonplaceholder.typicode.com/posts`, {
           userId: 1,
           title: this.blog.title,
           body: this.blog.content
-        })
-
-        console.log(data)
+        })).data
+        this.blog.posted = true
+        console.log(this.blog.posted)
       } catch (e) {
+        this.blog.failed = true
         console.log(e)
       }
     }
