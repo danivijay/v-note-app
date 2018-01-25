@@ -7,15 +7,16 @@
       sm10 
       offset-sm1
       >
-      <div class="pl-2 pr-2 pt-2 pb-2">
-        <h2>Heading</h2>
-        <p>Para</p>
-      </div>
-      <v-divider></v-divider>
-      <div class="pl-2 pr-2 pt-2 pb-2">
-        <h2>Heading</h2>
-        <p>Para</p>
-      </div>
+      <template v-for="post in posts">
+        <div class="pl-2 pr-2 pt-2 pb-2" :key="post.id">
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.body }}</p>
+        </div>
+        <v-divider :key="post.id"></v-divider>
+      </template>
+      <v-alert v-if="failed" class="ml-2 mr-2 mt-2 mb-2" color="error" icon="warning" value="true">
+      Oops! Something went wrong
+      </v-alert>
     </v-flex>
   </v-layout>
 </template>
@@ -26,16 +27,18 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      blogs : {}
+      posts : {},
+      failed: false
     }
   },
   async created() {
     try {
-      const data = (await axios.get(`http://jsonplaceholder.typicode.com/posts`)).data
-      this.blogs = data
-      console.log(this.blogs)
+      this.posts = (await axios.get(`http://jsonplaceholder.typicode.com/posts`)).data
+        .filter((post, index) => index < 10)
+      this.failed = false
     } catch (e) {
       console.log(e)
+      this.failed = true
     }
   }
 }

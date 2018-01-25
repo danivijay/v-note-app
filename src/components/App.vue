@@ -55,7 +55,7 @@
           { icon: 'home', title: 'Home' },
           { icon: 'add', title: 'Add Post' },
         ],
-        title: 'VueBlog'
+        title: 'vueblog'
       }
     }
   }
