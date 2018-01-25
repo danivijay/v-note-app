@@ -50,18 +50,28 @@ export default {
       this.failed = true
     }
   },
-  watch: {
-    search: function() {
-      //this.posts = this.posts.filter( (post) => post.title.match(this.search) )
-    }
-  },
   computed: {
     filteredPosts: function () {
-      //return this.posts
-      if (this.search != '')
-        return this.posts.filter( (post) => post.title.match(this.search) )
-      else
+      if (this.search != '') {
         return this.posts
+          .filter( (post) => 
+            (post.title.match(this.search) || post.body.match(this.search)) 
+          )}
+      else {
+        return this.posts
+      }
+    }
+  },
+  filters: {
+    snippet (val) { 
+      return val.slice(0, 150) + '...'
+    }
+  },
+  directives: {
+    rainbow: {
+      bind (el, binding, vnode) {
+        return el.style.color = '#' + Math.random().toString(10).slice(2,8)
+      }
     }
   }
 }
