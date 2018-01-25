@@ -11,6 +11,12 @@ Vue.directive('rainbow', {
   } 
 })
 
+Vue.filter('firstUpperCase', (val) => {
+  return val.charAt(0).toUpperCase() + val.slice(1).toLowerCase()
+})
+
+Vue.filter('snippet', (val) => val.slice(0, 150) + '...' )
+
 new Vue({
   el: '#app',
   render: h => h(App)

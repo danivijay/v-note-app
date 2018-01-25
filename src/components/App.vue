@@ -1,26 +1,10 @@
 <template>
   <v-app>
-    <v-navigation-drawer
-      fixed
-      v-model="drawer"
-      app
-    >
-      <v-divider></v-divider>
-      <v-list dense class="pt-0">
-        <v-list-tile v-for="item in items" :key="item.title">
-          <v-list-tile-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
     <v-toolbar fixed app>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-btn flat icon><v-icon>add</v-icon></v-btn>
+      <v-btn flat icon><v-icon>home</v-icon></v-btn>
     </v-toolbar>
     <v-content>
       <v-container fluid>
@@ -49,8 +33,6 @@
     },
     data () {
       return {
-        drawer: false,
-        fixed: false,
         items: [
           { icon: 'home', title: 'Home' },
           { icon: 'add', title: 'Add Post' },
