@@ -11,16 +11,8 @@
         <v-slide-y-transition mode="out-in">
           
           <!--Site Content--> 
-          <!-- <add-post /> -->
-          <show-posts />
-
-        </v-slide-y-transition>
-        <v-slide-y-transition mode="out-in">
+          <router-view></router-view>
           
-          <!--Site Content--> 
-          <!-- <add-post /> -->
-          <show-titles />
-
         </v-slide-y-transition>
       </v-container>
     </v-content>
