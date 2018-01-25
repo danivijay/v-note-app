@@ -15,6 +15,13 @@
           <show-posts />
 
         </v-slide-y-transition>
+        <v-slide-y-transition mode="out-in">
+          
+          <!--Site Content--> 
+          <!-- <add-post /> -->
+          <show-titles />
+
+        </v-slide-y-transition>
       </v-container>
     </v-content>
     <v-footer app>
@@ -26,10 +33,12 @@
 <script>
   import AddPost from './AddPost.vue'
   import ShowPosts from './ShowPosts.vue'
+  import ShowTitles from './ShowTitles.vue'
   export default {
     components: {
       AddPost,
-      ShowPosts
+      ShowPosts,
+      ShowTitles
     },
     data () {
       return {

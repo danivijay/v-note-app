@@ -17,7 +17,6 @@
       <template v-for="post in filteredPosts">
         <div class="pl-2 pr-2 pt-2 pb-2" :key="post.title">
           <h2 v-rainbow>{{ post.title | firstUpperCase }}</h2>
-          <p>{{ post.body | snippet }}</p>
         </div>
         <v-divider :key="post.id"></v-divider>
       </template>
