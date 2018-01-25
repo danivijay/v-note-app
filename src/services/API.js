@@ -1,5 +1,6 @@
 import axios from 'axios';
 
-export const HTTP = axios.create({
+export default () => { return axios.create({
   baseURL: `http://jsonplaceholder.typicode.com/`
-})
+}) 
+}

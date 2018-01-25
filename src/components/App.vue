@@ -27,7 +27,8 @@
         <v-slide-y-transition mode="out-in">
           
           <!--Site Content--> 
-          <add-post />
+          <!-- <add-post /> -->
+          <show-posts />
 
         </v-slide-y-transition>
       </v-container>
@@ -40,9 +41,11 @@
 
 <script>
   import AddPost from './AddPost.vue'
+  import ShowPosts from './ShowPosts.vue'
   export default {
     components: {
-      AddPost
+      AddPost,
+      ShowPosts
     },
     data () {
       return {
