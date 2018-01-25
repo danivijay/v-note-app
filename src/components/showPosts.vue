@@ -8,8 +8,8 @@
       offset-sm1
       >
       <template v-for="post in posts">
-        <div class="pl-2 pr-2 pt-2 pb-2" :key="post.id">
-          <h2>{{ post.title }}</h2>
+        <div class="pl-2 pr-2 pt-2 pb-2" :key="post.title">
+          <h2 v-rainbow>{{ post.title }}</h2>
           <p>{{ post.body }}</p>
         </div>
         <v-divider :key="post.id"></v-divider>
