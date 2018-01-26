@@ -3,9 +3,11 @@ export default {
     filteredblogs: function () {
       if (this.search != '') {
         return this.blogs
-          .filter( (blog) => 
-            (blog.title.match(this.search) || blog.body.match(this.search)) 
-          )}
+          .filter( (blog) => { 
+            return (blog.title.toLowerCase().match(this.search.toLowerCase()) || blog.content.toLowerCase().match(this.search.toLowerCase())) 
+          }
+          )
+      }
       else {
         return this.blogs
       }

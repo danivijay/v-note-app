@@ -30,7 +30,6 @@ export default {
     }
   },
   async created () {
-    console.log('hereee1')
     try {
       this.blog = (await axios.get(`https://vueblog-1822a.firebaseio.com/posts/${this.id}.json`)).data
       this.failed = false

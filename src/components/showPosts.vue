@@ -14,8 +14,8 @@
         ></v-text-field>
       </div>
       <v-divider></v-divider>
-      <template v-for="(blog, index) in filteredblogs">
-        <router-link tag="div" :to="`/view/${index}`" class="pl-2 pr-2 pt-2 pb-2" :key="blog.title">
+      <template v-for="blog in filteredblogs">
+        <router-link tag="div" :to="`/view/${blog.id}`" class="pl-2 pr-2 pt-2 pb-2" :key="blog.title">
           <h2 v-rainbow>{{ blog.title | firstUpperCase }}</h2>
           <p>{{ blog.content }}</p>
         </router-link>
@@ -35,14 +35,20 @@ import searchMixin from '../mixins/searchMixin'
 export default {
   data () {
     return {
-      blogs : {},
+      blogs : [],
       failed: false,
       search: ''
     }
   },
   async created() {
     try {
-      this.blogs = (await axios.get(`https://vueblog-1822a.firebaseio.com/posts.json`)).data
+      let tempblogs = []
+      let data = (await axios.get(`https://vueblog-1822a.firebaseio.com/posts.json`)).data
+      for (let key in data) {
+        data[key].id = key
+        tempblogs.push(data[key])
+      }
+      this.blogs = tempblogs
       this.failed = false
       console.log(this.blogs)
     } catch (e) {
