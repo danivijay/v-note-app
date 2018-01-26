@@ -55,7 +55,7 @@
       Successfully posted
       </v-alert>
 
-      <v-alert v-if="blog.failed" class="ml-2 mr-2 mt-2 mb-2" color="error" icon="warning" value="true">
+      <v-alert v-if="failed" class="ml-2 mr-2 mt-2 mb-2" color="error" icon="warning" value="true">
       Oops! Please try again
       </v-alert>
 
@@ -98,23 +98,19 @@ export default {
           { text: 'The Web Club' }
         ],
         level: '',
-        posted: false,
-        failed: false
-      }
+        posted: false
+      },
+      failed: false
     }
   },
   methods: {
     async submitPost () {
       try {
-        const data = (await axios.post(`http://jsonplaceholder.typicode.com/posts`, {
-          userId: 1,
-          title: this.blog.title,
-          body: this.blog.content
-        })).data
+        const data = (await axios.post(`https://vueblog-1822a.firebaseio.com/posts.json`, this.blog)).data
         this.blog.posted = true
         console.log(this.blog.posted)
       } catch (e) {
-        this.blog.failed = true
+        this.failed = true
         console.log(e)
       }
     }

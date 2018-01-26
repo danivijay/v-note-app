@@ -9,7 +9,8 @@ Vue.use(vueRouter)
 Vue.use(Vuetify)
 
 const router = new vueRouter ({
-  routes: Routes
+  routes: Routes,
+  mode: 'hash'
 })
 
 // custom directives - defined the same locally

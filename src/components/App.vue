@@ -1,10 +1,10 @@
 <template>
   <v-app>
     <v-toolbar fixed app>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+      <router-link tag="v-toolbar-title" to="/" v-text="title"></router-link>
       <v-spacer></v-spacer>
-      <v-btn flat icon><v-icon>add</v-icon></v-btn>
-      <v-btn flat icon><v-icon>home</v-icon></v-btn>
+      <v-btn to="/add" exact flat icon><v-icon>add</v-icon></v-btn>
+      <v-btn to="/" exact flat icon><v-icon>home</v-icon></v-btn>
     </v-toolbar>
     <v-content>
       <v-container fluid>

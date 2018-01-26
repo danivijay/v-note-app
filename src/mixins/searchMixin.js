@@ -1,13 +1,13 @@
 export default {
   computed: {
-    filteredPosts: function () {
+    filteredblogs: function () {
       if (this.search != '') {
-        return this.posts
-          .filter( (post) => 
-            (post.title.match(this.search) || post.body.match(this.search)) 
+        return this.blogs
+          .filter( (blog) => 
+            (blog.title.match(this.search) || blog.body.match(this.search)) 
           )}
       else {
-        return this.posts
+        return this.blogs
       }
     }
   }

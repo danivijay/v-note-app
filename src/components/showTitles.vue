@@ -14,11 +14,11 @@
         ></v-text-field>
       </div>
       <v-divider></v-divider>
-      <template v-for="post in filteredPosts">
-        <div class="pl-2 pr-2 pt-2 pb-2" :key="post.title">
-          <h2 v-rainbow>{{ post.title | firstUpperCase }}</h2>
+      <template v-for="blog in filteredblogs">
+        <div class="pl-2 pr-2 pt-2 pb-2" :key="blog.title">
+          <h2 v-rainbow>{{ blog.title | firstUpperCase }}</h2>
         </div>
-        <v-divider :key="post.id"></v-divider>
+        <v-divider :key="blog.id"></v-divider>
       </template>
       <v-alert v-if="failed" class="ml-2 mr-2 mt-2 mb-2" color="error" icon="warning" value="true">
       Oops! Something went wrong
@@ -34,17 +34,17 @@ import searchMixin from '../mixins/searchMixin'
 export default {
   data () {
     return {
-      posts : {},
+      blogs : {},
       failed: false,
       search: ''
     }
   },
   async created() {
     try {
-      this.posts = (await axios.get(`http://jsonplaceholder.typicode.com/posts`)).data
-        .filter((post, index) => index < 10)
+      this.blogs = (await axios.get(`http://jsonplaceholder.typicode.com/posts`)).data
+        .filter((blog, index) => index < 10)
       this.failed = false
-      console.log(this.posts)
+      console.log(this.blogs)
     } catch (e) {
       console.log(e)
       this.failed = true
